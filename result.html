@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment Result</title>
+</head>
+<body>
+  <h2>Your Original Text:</h2>
+  <p>{{ text }}</p>
+
+
+  <h2>Overall Sentiment:</h2>
+  <p><strong>{{ overall }}</strong></p>
+
+
+  <h2>Sentence-by-Sentence Analysis:</h2>
+  <ul>
+    {% for item in results %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+
+
+  <a href="/">Back to tracker</a>
+</body>
+</html>

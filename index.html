@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emotional Feed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    h1, h2 {
+      color: #444;
+    }
+    form textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 16px;
+      padding: 10px;
+    }
+    form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .entry {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .entry time {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .entry pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+
+  <h1>How Are You Feeling?</h1>
+
+
+  <form method="POST" action="/analyze">
+    <textarea name="text" placeholder="Write your thoughts here..."></textarea><br>
+    <button type="submit">Analyze</button>
+  </form>
+
+
+  <h2>🧠 Your Emotional Feed</h2>
+
+
+  {% for entry in entries %}
+    <div class="entry">
+      <time>{{ entry.date.strftime('%Y-%m-%d %I:%M %p') }}</time>
+      <p><strong>Overall Sentiment:</strong> {{ entry.sentiment }}</p>
+      <p><strong>Your Entry:</strong><br>{{ entry.content }}</p>
+      <p><strong>Breakdown:</strong></p>
+      <pre>{{ entry.breakdown }}</pre>
+    </div>
+  {% else %}
+    <p>No entries yet.</p>
+  {% endfor %}
+
+
+</body>
+</html>
